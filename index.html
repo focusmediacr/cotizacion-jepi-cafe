@@ -738,36 +738,62 @@
 
   /* ── Builder sticky CTA ── */
   #section-medida {
-    padding-bottom: 100px;
+    padding-bottom: 90px;
   }
   .builder-total {
     position: sticky;
     bottom: 0;
     background: #080808;
     border-top: 1px solid var(--gold-border);
-    padding: 16px 0 20px;
+    padding: 12px 24px 16px;
     margin: 0 -24px;
-    padding-left: 24px;
-    padding-right: 24px;
     z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .builder-total-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .builder-total-info .bt-eyebrow {
+    font-size: 0.65rem;
+    margin-bottom: 2px;
+  }
+  .builder-total-info .bt-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+  .builder-total-info .bt-price {
+    font-size: 1.4rem;
+  }
+  .builder-total-info .bt-period {
+    font-size: 0.75rem;
+  }
+  .builder-total-info .bt-note {
+    font-size: 0.62rem;
+    margin-top: 2px;
   }
   /* ── Builder CTA ── */
   .builder-total .cta {
-    display: block;
-    width: 100%;
-    margin-top: 28px;
-    padding: 18px 24px;
-    font-size: 1.05rem;
-    letter-spacing: 0.08em;
+    display: inline-block;
+    width: auto;
+    flex-shrink: 0;
+    margin-top: 0;
+    padding: 12px 18px;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
     background: var(--gold);
     color: #080808;
     border: none;
     font-weight: 500;
-    box-shadow: 0 0 28px rgba(201,161,99,0.25);
+    box-shadow: 0 0 20px rgba(201,161,99,0.2);
+    white-space: nowrap;
   }
   .builder-total .cta:hover {
     background: #d9b476;
-    box-shadow: 0 0 40px rgba(201,161,99,0.4);
+    box-shadow: 0 0 32px rgba(201,161,99,0.35);
     color: #080808;
     transform: translateY(-1px);
   }
@@ -1060,12 +1086,14 @@
     </div>
 
     <div class="builder-total">
+      <div class="builder-total-info">
       <div class="bt-eyebrow">Total mensual estimado</div>
       <div class="bt-price-row">
         <div class="bt-price" id="bt-price">₡40,000</div>
         <div class="bt-period">/mes</div>
       </div>
       <p class="bt-note" id="bt-note"></p>
+      </div>
       <a class="cta" id="bt-wa" href="#" target="_blank" rel="noopener">Consultar por WhatsApp</a>
     </div>
 
