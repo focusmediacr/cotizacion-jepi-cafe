@@ -1,0 +1,1222 @@
+<title>Focus Media — Planes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg:          #080808;
+    --surface:     #111111;
+    --surface-hi:  #161616;
+    --border:      #252525;
+    --gold:        #C9A163;
+    --gold-dim:    #8A6E3E;
+    --gold-glow:   rgba(201,161,99,0.12);
+    --gold-border: rgba(201,161,99,0.35);
+    --text:        #F0F0F0;
+    --text-muted:  #909090;
+    --text-dim:    #555555;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    padding-block: 40px;
+    padding-inline: 20px;
+  }
+
+  .page {
+    width: 100%;
+    max-width: 960px;
+    margin-inline: auto;
+  }
+
+  /* ── Header ── */
+  .header {
+    text-align: center;
+    margin-bottom: 44px;
+  }
+
+  .eyebrow {
+    font-size: 0.62rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+
+  .brand {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .headline {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Section ── */
+  .section {
+    margin-bottom: 16px;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .section-label-text {
+    font-size: 0.6rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .section-label-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── Cards grid ── */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    align-items: start;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 28px 24px 32px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card.featured {
+    background: var(--surface-hi);
+    border-color: var(--gold-border);
+    box-shadow: 0 0 40px var(--gold-glow), inset 0 1px 0 rgba(201,161,99,0.15);
+    margin-top: -10px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .badge {
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--bg);
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 4px 14px;
+    white-space: nowrap;
+  }
+
+  /* ── Card name ── */
+  .card-name {
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .card.featured .card-name {
+    color: var(--gold-dim);
+    border-bottom-color: var(--gold-border);
+  }
+
+  /* ── Price ── */
+  .price-block {
+    margin-bottom: 20px;
+  }
+
+  .price-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+
+  .price {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.7rem, 3.2vw, 2.3rem);
+    font-weight: 400;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  .card.featured .price {
+    color: var(--gold);
+  }
+
+  .price-period {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    font-weight: 300;
+    margin-left: 3px;
+  }
+
+  /* ── Features ── */
+  .features {
+    list-style: none;
+    flex: 1;
+    margin-bottom: 28px;
+    border-top: 1px solid var(--border);
+  }
+
+  .card.featured .features {
+    border-top-color: rgba(201,161,99,0.2);
+  }
+
+  .feature {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .feature:last-child {
+    border-bottom: none;
+  }
+
+  .feature-name {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.4;
+  }
+
+  .feature-qty {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--text-dim);
+    flex-shrink: 0;
+    line-height: 1;
+    min-width: 20px;
+    text-align: right;
+  }
+
+  .card.featured .feature-qty {
+    color: var(--gold);
+  }
+
+  /* ── CTA ── */
+  .cta {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    text-decoration: none;
+  }
+
+  .card:not(.featured) .cta {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+  }
+
+  .card:not(.featured) .cta:hover {
+    border-color: var(--gold-dim);
+    color: var(--gold);
+  }
+
+  .card.featured .cta {
+    background: var(--gold);
+    color: var(--bg);
+  }
+
+  .card.featured .cta:hover {
+    background: #D4AE72;
+  }
+
+  /* ── Tab switcher ── */
+  .tab-switcher {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 4px;
+    width: fit-content;
+    margin-inline: auto;
+    margin-bottom: 36px;
+  }
+
+  @media (max-width: 520px) {
+    .tab-switcher {
+      flex-wrap: wrap;
+      width: auto;
+    }
+    .tab-btn {
+      flex: 1 1 calc(50% - 6px);
+    }
+    .tab-btn:last-child {
+      flex: 0 0 auto;
+      margin-inline: auto;
+    }
+  }
+
+  .tab-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 10px 28px;
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+
+  .tab-btn.active {
+    background: var(--gold);
+    color: var(--bg);
+  }
+
+  .tab-btn:not(.active):hover {
+    color: var(--gold);
+  }
+
+  /* ── Section visibility ── */
+  .section {
+    transition: opacity 0.25s ease;
+  }
+
+  .section.hidden {
+    display: none;
+  }
+
+  /* ── Section divider ── */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-block: 36px 40px;
+  }
+
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .divider-mark {
+    width: 3px;
+    height: 3px;
+    background: var(--gold-dim);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* ── Content types reference ── */
+  .types-section {
+    margin-top: 36px;
+  }
+
+  .types-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .type-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 18px 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .type-duration {
+    font-size: 0.56rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    font-weight: 500;
+  }
+
+  .type-name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.25;
+  }
+
+  .type-desc {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    font-weight: 300;
+    flex: 1;
+  }
+
+  .type-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .type-tag {
+    font-size: 0.56rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    padding: 3px 7px;
+    font-weight: 400;
+  }
+
+  @media (max-width: 720px) {
+    .types-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .types-grid .type-card:last-child {
+      grid-column: 1 / -1;
+    }
+  }
+
+  /* ── Plan note (below cards) ── */
+  .plan-note {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    letter-spacing: 0.02em;
+    line-height: 1.6;
+    margin-top: 16px;
+    padding-left: 2px;
+  }
+
+  .plan-note strong {
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  /* ── Footnotes ── */
+  .footnotes {
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footnote-item {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.02em;
+    line-height: 1.7;
+  }
+
+  .footnote-item strong {
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .fn-mark {
+    color: var(--gold-dim);
+    font-weight: 500;
+    margin-right: 4px;
+  }
+
+  /* ── Footer ── */
+  .footer-note {
+    text-align: center;
+    margin-top: 36px;
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+  }
+
+  .footer-note strong {
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  /* ── Print / PDF ── */
+  @media print {
+    @page { size: A4; margin: 14mm 16mm; }
+
+    body {
+      padding-block: 0;
+      padding-inline: 0;
+      display: block;
+      background: var(--bg);
+    }
+
+    .page { max-width: none; }
+
+    /* Page 1: header + Solo Video */
+    /* Page 2: Video + Fotografía */
+    /* Page 3: Tipos de contenido */
+
+    .header { margin-bottom: 36px; }
+
+    .section { margin-bottom: 0; }
+    .section-label { margin-bottom: 20px; }
+
+    .cards { gap: 12px; }
+
+    .card { padding: 22px 20px 26px; }
+    .card.featured {
+      margin-top: -10px;
+      padding-top: 36px;
+      padding-bottom: 36px;
+    }
+
+    /* Section 2 starts on page 2 */
+    .section-divider { display: none; }
+    .section-page2 {
+      page-break-before: always;
+      padding-top: 8mm;
+    }
+
+    /* Page 3: tipos */
+    .types-section {
+      page-break-before: always;
+      margin-top: 0;
+      padding-top: 6mm;
+    }
+
+    .types-grid { gap: 10px; margin-top: 20px; }
+
+    .footnotes { margin-top: 28px; padding-top: 18px; }
+    .footer-note { margin-top: 20px; }
+  }
+
+  /* ── Carousel: desktop passthrough ── */
+  .cards-track {
+    display: contents; /* cards become direct grid children on desktop */
+  }
+
+  .nav-arrow {
+    display: none;
+  }
+
+  /* ── Mobile carousel — transform-based, no scroll, Safari-safe ── */
+  @media (max-width: 720px) {
+    .cards-outer {
+      display: grid;
+      grid-template-columns: 36px 1fr 36px;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cards {
+      display: block; /* cancel 3-col grid — track fills full width */
+      overflow: hidden;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .cards-track {
+      display: flex; /* override display:contents on mobile */
+      width: 100%;
+      transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+
+    .cards-track .card {
+      flex: 0 0 100%;
+      min-width: 0;
+    }
+
+    .cards-track .card.featured {
+      margin-top: 0;
+      padding-top: 28px;
+      padding-bottom: 28px;
+    }
+
+    .nav-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      flex-shrink: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav-arrow:hover, .nav-arrow:active {
+      border-color: var(--gold-dim);
+      color: var(--gold);
+    }
+
+    .types-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .types-grid .type-card:last-child {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (min-width: 721px) {
+    .types-grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+
+  /* ── Builder / A medida ── */
+  .sl-row {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .sl-row:first-child { border-top: 1px solid var(--border); }
+
+  .sl-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 16px;
+  }
+
+  .sl-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .sl-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--gold);
+    line-height: 1;
+    min-width: 2ch;
+    text-align: right;
+  }
+
+  input[type="range"].sl {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 1px;
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(to right, var(--gold) 0%, var(--border) 0%);
+  }
+
+  input[type="range"].sl::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--gold);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  input[type="range"].sl:active::-webkit-slider-thumb,
+  input[type="range"].sl:hover::-webkit-slider-thumb {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 6px var(--gold-glow);
+  }
+
+  input[type="range"].sl::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--gold);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+  }
+
+  input[type="range"].sl::-moz-range-progress {
+    background: var(--gold);
+    height: 1px;
+  }
+
+  .builder-total {
+    margin-top: 36px;
+    padding-top: 28px;
+    border-top: 1px solid var(--gold-border);
+  }
+
+  .bt-eyebrow {
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+
+  .bt-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .bt-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.2rem;
+    font-weight: 500;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .bt-period {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  .bt-note {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-top: 14px;
+  }
+
+  .bt-note strong {
+    color: var(--gold-dim);
+    font-weight: 400;
+  }
+
+  /* ── Builder CTA ── */
+  .builder-total .cta {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+  }
+  .builder-total .cta:hover {
+    border-color: var(--gold-dim);
+    color: var(--gold);
+  }
+
+  /* ── Builder compacto en móvil ── */
+  @media (max-width: 720px) {
+    .sl-row {
+      padding: 11px 0;
+    }
+    .sl-head {
+      margin-bottom: 8px;
+    }
+    .sl-val {
+      font-size: 1.4rem;
+    }
+    .sl-label {
+      font-size: 0.68rem;
+    }
+    .builder-total {
+      margin-top: 20px;
+      padding-top: 16px;
+    }
+    .bt-price {
+      font-size: 2.2rem;
+    }
+    .bt-eyebrow {
+      margin-bottom: 6px;
+    }
+  }
+</style>
+
+<div class="page">
+
+  <header class="header">
+    <p class="eyebrow">Contenido para redes sociales</p>
+    <div class="brand">Focus Media</div>
+    <p class="headline">Planes mensuales · Jepi Café, Belén</p>
+  </header>
+
+  <!-- ── TABS ── -->
+  <div class="tab-switcher" role="tablist">
+    <button class="tab-btn active" data-target="section-solo" role="tab" aria-selected="true">Solo video</button>
+    <button class="tab-btn" data-target="section-foto" role="tab" aria-selected="false">Video + Fotografía</button>
+    <button class="tab-btn" data-target="section-medida" role="tab" aria-selected="false">A medida</button>
+  </div>
+
+  <!-- ── SOLO VIDEO ── -->
+  <section class="section" id="section-solo">
+    <div class="section-label">
+      <span class="section-label-text">Solo video</span>
+      <div class="section-label-line"></div>
+    </div>
+
+    <div class="cards-outer">
+      <button class="nav-arrow nav-prev" aria-label="Anterior">&#8592;</button>
+      <div class="cards">
+        <div class="cards-track">
+
+          <div class="card">
+            <div class="card-name">Básico</div>
+            <div class="price-block">
+              <div class="price-label">Desde</div>
+              <div class="price">₡130,000<span class="price-period">/mes</span></div>
+            </div>
+            <ul class="features">
+              <li class="feature">
+                <span class="feature-name">Stories orgánicas</span>
+                <span class="feature-qty">6</span>
+              </li>
+              <li class="feature">
+                <span class="feature-name">Reels orgánicos</span>
+                <span class="feature-qty">4</span>
+              </li>
+              <li class="feature">
+                <span class="feature-name">Reel profesional <span style="color:var(--gold-dim)">†</span></span>
+                <span class="feature-qty">1</span>
+              </li>
+            </ul>
+            <a class="cta" href="https://wa.me/50660254961?text=Hola%2C%20me%20interesa%20el%20plan%20B%C3%A1sico%20de%20Solo%20Video%20(%E2%82%A1130.000%2Fmes).%20%C2%BFMe%20pod%C3%A9s%20dar%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+          </div>
+
+          <div class="card featured">
+            <div class="badge">Más popular</div>
+            <div class="card-name">Activo</div>
+            <div class="price-block">
+              <div class="price-label">Desde</div>
+              <div class="price">₡175,000<span class="price-period">/mes</span></div>
+            </div>
+            <ul class="features">
+              <li class="feature">
+                <span class="feature-name">Stories orgánicas</span>
+                <span class="feature-qty">9</span>
+              </li>
+              <li class="feature">
+                <span class="feature-name">Reels orgánicos</span>
+                <span class="feature-qty">5</span>
+              </li>
+              <li class="feature">
+                <span class="feature-name">Reels profesionales <span style="color:var(--gold-dim)">†</span></span>
+                <span class="feature-qty">2</span>
+              </li>
+            </ul>
+            <a class="cta" href="https://wa.me/50660254961?text=Hola%2C%20me%20interesa%20el%20plan%20Activo%20de%20Solo%20Video%20(%E2%82%A1175.000%2Fmes).%20%C2%BFMe%20pod%C3%A9s%20dar%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+          </div>
+
+          <div class="card">
+            <div class="card-name">Completo</div>
+            <div class="price-block">
+              <div class="price-label">Desde</div>
+              <div class="price">₡220,000<span class="price-period">/mes</span></div>
+            </div>
+            <ul class="features">
+              <li class="feature">
+                <span class="feature-name">Stories orgánicas</span>
+                <span class="feature-qty">12</span>
+              </li>
+              <li class="feature">
+                <span class="feature-name">Reels orgánicos</span>
+                <span class="feature-qty">7</span>
+              </li>
+              <li class="feature">
+                <span class="feature-name">Reels profesionales <span style="color:var(--gold-dim)">†</span></span>
+                <span class="feature-qty">3</span>
+              </li>
+            </ul>
+            <a class="cta" href="https://wa.me/50660254961?text=Hola%2C%20me%20interesa%20el%20plan%20Completo%20de%20Solo%20Video%20(%E2%82%A1220.000%2Fmes).%20%C2%BFMe%20pod%C3%A9s%20dar%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+          </div>
+
+        </div>
+      </div>
+      <button class="nav-arrow nav-next" aria-label="Siguiente">&#8594;</button>
+    </div>
+    <p class="plan-note"><span class="fn-mark">†</span>El cliente elige entre <strong>Reel cinematográfico</strong> o <strong>Reel dinámico con subtítulos</strong>. · Básico y Activo: 1 visita mensual · Completo: 2 visitas mensuales · Transporte incluido.</p>
+  </section>
+
+  <div class="section-divider" hidden>
+    <div class="divider-line"></div>
+    <div class="divider-mark"></div>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- ── VIDEO + FOTOGRAFÍA ── -->
+  <section class="section section-page2 hidden" id="section-foto">
+    <div class="section-label">
+      <span class="section-label-text">Video + Fotografía</span>
+      <div class="section-label-line"></div>
+    </div>
+
+    <div class="cards-outer">
+      <button class="nav-arrow nav-prev" aria-label="Anterior">&#8592;</button>
+      <div class="cards">
+        <div class="cards-track">
+
+          <div class="card">
+            <div class="card-name">Esencial</div>
+            <div class="price-block">
+              <div class="price-label">Desde</div>
+              <div class="price">₡155,000<span class="price-period">/mes</span></div>
+            </div>
+            <ul class="features">
+              <li class="feature">
+                <span class="feature-name">Fotografías editadas</span>
+                <span class="feature-qty">8</span>
+              </li>
+              <li class="feature">
+                <span class="feature-name">Stories orgánicas</span>
+                <span class="feature-qty">6</span>
+              </li>
+              <li class="feature">
+                <span class="feature-name">Reels orgánicos</span>
+                <span class="feature-qty">4</span>
+              </li>
+              <li class="feature">
+                <span class="feature-name">Reel profesional <span style="color:var(--gold-dim)">†</span></span>
+                <span class="feature-qty">1</span>
+              </li>
+            </ul>
+            <a class="cta" href="https://wa.me/50660254961?text=Hola%2C%20me%20interesa%20el%20plan%20Esencial%20de%20Video%20%2B%20Fotograf%C3%ADa%20(%E2%82%A1155.000%2Fmes).%20%C2%BFMe%20pod%C3%A9s%20dar%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+          </div>
+
+          <div class="card featured">
+            <div class="badge">Más popular</div>
+            <div class="card-name">Activo</div>
+            <div class="price-block">
+              <div class="price-label">Desde</div>
+              <div class="price">₡205,000<span class="price-period">/mes</span></div>
+            </div>
+            <ul class="features">
+              <li class="feature">
+                <span class="feature-name">Fotografías editadas</span>
+                <span class="feature-qty">10</span>
+              </li>
+              <li class="feature">
+                <span class="feature-name">Stories orgánicas</span>
+                <span class="feature-qty">9</span>
+              </li>
+              <li class="feature">
+                <span class="feature-name">Reels orgánicos</span>
+                <span class="feature-qty">5</span>
+              </li>
+              <li class="feature">
+                <span class="feature-name">Reels profesionales <span style="color:var(--gold-dim)">†</span></span>
+                <span class="feature-qty">2</span>
+              </li>
+            </ul>
+            <a class="cta" href="https://wa.me/50660254961?text=Hola%2C%20me%20interesa%20el%20plan%20Activo%20de%20Video%20%2B%20Fotograf%C3%ADa%20(%E2%82%A1205.000%2Fmes).%20%C2%BFMe%20pod%C3%A9s%20dar%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+          </div>
+
+          <div class="card">
+            <div class="card-name">Completo</div>
+            <div class="price-block">
+              <div class="price-label">Desde</div>
+              <div class="price">₡250,000<span class="price-period">/mes</span></div>
+            </div>
+            <ul class="features">
+              <li class="feature">
+                <span class="feature-name">Fotografías editadas</span>
+                <span class="feature-qty">14</span>
+              </li>
+              <li class="feature">
+                <span class="feature-name">Stories orgánicas</span>
+                <span class="feature-qty">12</span>
+              </li>
+              <li class="feature">
+                <span class="feature-name">Reels orgánicos</span>
+                <span class="feature-qty">7</span>
+              </li>
+              <li class="feature">
+                <span class="feature-name">Reels profesionales <span style="color:var(--gold-dim)">†</span></span>
+                <span class="feature-qty">3</span>
+              </li>
+            </ul>
+            <a class="cta" href="https://wa.me/50660254961?text=Hola%2C%20me%20interesa%20el%20plan%20Completo%20de%20Video%20%2B%20Fotograf%C3%ADa%20(%E2%82%A1250.000%2Fmes).%20%C2%BFMe%20pod%C3%A9s%20dar%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+          </div>
+
+        </div>
+      </div>
+      <button class="nav-arrow nav-next" aria-label="Siguiente">&#8594;</button>
+    </div>
+    <p class="plan-note"><span class="fn-mark">†</span>El cliente elige entre <strong>Reel cinematográfico</strong> o <strong>Reel dinámico con subtítulos</strong>. · Esencial y Activo: 1 visita mensual · Completo: 2 visitas mensuales · Transporte incluido.</p>
+  </section>
+
+  <!-- ── A MEDIDA ── -->
+  <section class="section hidden" id="section-medida">
+    <div class="section-label">
+      <span class="section-label-text">Armá tu plan</span>
+      <div class="section-label-line"></div>
+    </div>
+
+    <div class="sl-row">
+      <div class="sl-head">
+        <span class="sl-label">Fotografías editadas</span>
+        <span class="sl-val" id="val-fotos">0</span>
+      </div>
+      <input type="range" class="sl" id="sl-fotos" min="0" max="20" value="0" step="1">
+    </div>
+
+    <div class="sl-row">
+      <div class="sl-head">
+        <span class="sl-label">Stories orgánicas</span>
+        <span class="sl-val" id="val-stories">0</span>
+      </div>
+      <input type="range" class="sl" id="sl-stories" min="0" max="20" value="0" step="1">
+    </div>
+
+    <div class="sl-row">
+      <div class="sl-head">
+        <span class="sl-label">Reels orgánicos</span>
+        <span class="sl-val" id="val-virales">2</span>
+      </div>
+      <input type="range" class="sl" id="sl-virales" min="2" max="12" value="2" step="1">
+    </div>
+
+    <div class="sl-row">
+      <div class="sl-head">
+        <span class="sl-label">Reels profesionales <span style="color:var(--gold-dim)">†</span></span>
+        <span class="sl-val" id="val-reels">1</span>
+      </div>
+      <input type="range" class="sl" id="sl-reels" min="1" max="4" value="1" step="1">
+    </div>
+
+    <div class="sl-row">
+      <div class="sl-head">
+        <span class="sl-label">Visitas al local</span>
+        <span class="sl-val" id="val-visitas">1</span>
+      </div>
+      <input type="range" class="sl" id="sl-visitas" min="1" max="3" value="1" step="1">
+    </div>
+
+    <div class="builder-total">
+      <div class="bt-eyebrow">Total mensual estimado</div>
+      <div class="bt-price-row">
+        <div class="bt-price" id="bt-price">₡40,000</div>
+        <div class="bt-period">/mes</div>
+      </div>
+      <p class="bt-note" id="bt-note"></p>
+      <a class="cta" id="bt-wa" href="#" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+    </div>
+
+    <p class="plan-note" style="margin-top:20px"><span class="fn-mark">†</span>El cliente elige entre <strong>Reel cinematográfico</strong> o <strong>Reel dinámico con subtítulos</strong>. · Transporte incluido.</p>
+  </section>
+
+  <!-- ── Tipos de contenido ── -->
+  <div class="types-section">
+    <div class="section-label">
+      <span class="section-label-text">Tipos de contenido</span>
+      <div class="section-label-line"></div>
+    </div>
+
+    <div class="types-grid">
+
+      <div class="type-card">
+        <span class="type-duration">Sin edición avanzada</span>
+        <div class="type-name">Story orgánica</div>
+        <p class="type-desc">Contenido espontáneo capturado durante la sesión. One-shots, b-roll, fotos, encuestas o preguntas para mantener presencia diaria.</p>
+        <div class="type-tags">
+          <span class="type-tag">One-shot</span>
+          <span class="type-tag">B-roll</span>
+          <span class="type-tag">Encuesta</span>
+        </div>
+      </div>
+
+      <div class="type-card">
+        <span class="type-duration">~10 segundos</span>
+        <div class="type-name">Orgánico simple</div>
+        <p class="type-desc">Hook visual rápido: texto de apertura y reveal del producto. Formato directo pensado para el feed o Reels de bajo esfuerzo cognitivo.</p>
+        <div class="type-tags">
+          <span class="type-tag">Hook</span>
+          <span class="type-tag">Reveal</span>
+          <span class="type-tag">Texto</span>
+        </div>
+      </div>
+
+      <div class="type-card">
+        <span class="type-duration">~20 segundos</span>
+        <div class="type-name">Orgánico estándar</div>
+        <p class="type-desc">Video con cortes, música sincronizada y subtítulos básicos. Narrativa sencilla que muestra el producto o la experiencia del local.</p>
+        <div class="type-tags">
+          <span class="type-tag">Cortes</span>
+          <span class="type-tag">Música</span>
+          <span class="type-tag">Subtítulos</span>
+        </div>
+      </div>
+
+      <div class="type-card">
+        <span class="type-duration">30–40 segundos</span>
+        <div class="type-name">Reel cinematográfico</div>
+        <p class="type-desc">Grabación dirigida en locación con edición dinámica al ritmo de la música. Transiciones y planos variados para mayor impacto visual.</p>
+        <div class="type-tags">
+          <span class="type-tag">Dirigido</span>
+          <span class="type-tag">Dinámico</span>
+          <span class="type-tag">Transiciones</span>
+        </div>
+      </div>
+
+      <div class="type-card">
+        <span class="type-duration">30–40 segundos</span>
+        <div class="type-name">Reel dinámico</div>
+        <p class="type-desc">Guion y dirección creativa, edición con subtítulos sincronizados y grafismo básico. El formato de mayor producción del paquete.</p>
+        <div class="type-tags">
+          <span class="type-tag">Guion</span>
+          <span class="type-tag">Subtítulos</span>
+          <span class="type-tag">Grafismo</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Footnotes ── -->
+  <div class="footnotes">
+    <p class="footnote-item">
+      Todos los planes incluyen <strong>una sesión mensual de producción</strong>. Contenido adicional, sesiones extra o producciones especiales se cotizan por separado.
+    </p>
+  </div>
+
+  <p class="footer-note">
+    Precios en colones costarricenses (₡) · Base neta sin IVA<br>
+    <strong>50% para reservar y 50% el día de la producción</strong> · focusmedia.framer.website<br>
+    De requerir factura electrónica, indicarlo al momento de la contratación.<br>
+    Al contratar, el cliente acepta las <a href="https://docs.google.com/forms/d/e/1FAIpQLSf2pyksrhgfJaCGoh1tB1QdgExQj1DcWECcheXcJL5_32oyCw/viewform?usp=header" target="_blank" rel="noopener" style="color:var(--gold-dim);text-decoration:underline;text-underline-offset:3px;">Condiciones Generales del Servicio</a>.
+  </p>
+
+</div>
+
+<script>
+  // Tab switcher
+  const tabs = document.querySelectorAll('.tab-btn');
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.dataset.target;
+      tabs.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      document.querySelectorAll('.section').forEach(s => s.classList.add('hidden'));
+      document.getElementById(targetId).classList.remove('hidden');
+    });
+  });
+
+  // Carousel — transform-based, infinite loop, Safari-safe
+  document.querySelectorAll('.cards-outer').forEach(outer => {
+    const track = outer.querySelector('.cards-track');
+    if (!track) return; // desktop: display:contents, nothing to do
+    const allCards = Array.from(track.querySelectorAll('.card'));
+    const n = allCards.length;
+    const prev = outer.querySelector('.nav-prev');
+    const next = outer.querySelector('.nav-next');
+    let current = 0;
+
+    const goTo = (idx) => {
+      current = ((idx % n) + n) % n; // always 0..n-1, handles any number of clicks
+      track.style.transform = `translateX(-${current * 100}%)`;
+    };
+
+    next.addEventListener('click', () => goTo(current + 1));
+    prev.addEventListener('click', () => goTo(current - 1));
+  });
+
+  // ── Custom builder ──
+  const U_FOTO   = 4000;
+  const U_STORY  = 6000;
+  const U_VIRAL  = 15000;
+  const U_REEL   = 30000;
+  const U_VISITA = 10000;
+
+  const PKGS = [
+    { name: 'Básico',   price: 130000 },
+    { name: 'Activo',   price: 175000 },
+    { name: 'Completo', price: 220000 },
+  ];
+
+  function sliderBg(el) {
+    const pct = ((+el.value - +el.min) / (+el.max - +el.min)) * 100;
+    el.style.background = `linear-gradient(to right, var(--gold) ${pct}%, var(--border) ${pct}%)`;
+  }
+
+  function calcBuilder() {
+    const f   = +document.getElementById('sl-fotos').value;
+    const s   = +document.getElementById('sl-stories').value;
+    const v   = +document.getElementById('sl-virales').value;
+    const r   = +document.getElementById('sl-reels').value;
+    const vis = +document.getElementById('sl-visitas').value;
+
+    document.getElementById('val-fotos').textContent   = f;
+    document.getElementById('val-stories').textContent = s;
+    document.getElementById('val-virales').textContent = v;
+    document.getElementById('val-reels').textContent   = r;
+    document.getElementById('val-visitas').textContent = vis;
+
+    ['sl-fotos','sl-stories','sl-virales','sl-reels','sl-visitas'].forEach(id => sliderBg(document.getElementById(id)));
+
+    const total = f * U_FOTO + s * U_STORY + v * U_VIRAL + r * U_REEL + vis * U_VISITA;
+    document.getElementById('bt-price').textContent = '₡' + total.toLocaleString('es-CR');
+
+    const noteEl = document.getElementById('bt-note');
+    const best = [...PKGS].reverse().find(p => p.price < total);
+    noteEl.innerHTML = best
+      ? `El plan <strong>${best.name}</strong> (₡${best.price.toLocaleString('es-CR')}/mes) puede ser mejor opción para esta combinación.`
+      : '';
+
+    const parts = [];
+    if (f > 0) parts.push(`${f} fotos`);
+    if (s > 0) parts.push(`${s} stories`);
+    parts.push(`${v} videos virales`);
+    parts.push(`${r} reel(s) profesional(es)`);
+    parts.push(`${vis} visita(s)`);
+    const msg = encodeURIComponent(`Hola, me interesa armar un plan personalizado con Focus Media:\n${parts.join(', ')}.\nTotal estimado: ₡${total.toLocaleString('es-CR')}/mes. ¿Me podés dar más información?`);
+    const waEl = document.getElementById('bt-wa');
+    if (waEl) waEl.href = `https://wa.me/50660254961?text=${msg}`;
+  }
+
+  ['sl-fotos','sl-stories','sl-virales','sl-reels','sl-visitas'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    sliderBg(el);
+    el.addEventListener('input', calcBuilder);
+  });
+  calcBuilder();
+</script>
